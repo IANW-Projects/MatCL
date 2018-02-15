@@ -4,8 +4,11 @@ In comparison to other Matlab OpenCL solutions, MatCL is not just an OpenCL API 
 MatCL is primarily intended to help in the development and testing of OpenCL kernels by allowing to transparently pass data from and to Matlab. 
 Because MatCL handles the entire low-level process, this toolbox makes it possible to execute kernels without in depth knowledge of the host implementation necessary to support the execution of OpenCL kernels.
 MatCL is also optimized to allow efficient execution of OpenCL kernels within Matlab to accelerate computationally intensive tasks without having to rely on Nvidia CUDA. In addition to single command kernel execution, MatCL also allows for an independent two-step kernel compilation and launch workflow to save the kernel compile time and allow efficient repetitive kernel execution. 
-
-
+<br>
+Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeon, Core, HD Graphics) devices with Matlab R2016b and up.<br>
+<br>
+Usage:
+<br>
 Enumerate OpenCL Devices:<br/>
 [names,dev_class,max_mem]=cl_get_devices;<br/>
 names: Names of all available devices<br/>

@@ -39,7 +39,7 @@ tic;
 [run_time]=cl_run_kernel(1,'MM',Range,0,A,B,C,[1 1 2]);
 toc;
 
-time_str=sprintf("OpenCL Kernel time is %f seconds.",double(run_time)/1000/1000);
+time_str=sprintf('OpenCL Kernel time is %f seconds.',double(run_time)/1000/1000);
 disp(time_str)
 
 tic;
@@ -47,5 +47,5 @@ tic;
 [run_time]=cl_run_kernel(1,'mul_kernel.cl',settings,'MM',Range,0,A,B,C,[1 1 0]);
 toc;
 % 
- time_str=sprintf("OpenCL Kernel time is %f seconds.",double(run_time)/1000/1000);
+ time_str=sprintf('OpenCL Kernel time is %f seconds.',double(run_time)/1000/1000);
  disp(time_str)
