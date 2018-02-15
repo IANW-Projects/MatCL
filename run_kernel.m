@@ -42,7 +42,6 @@ end
 % - Global OpenCL Range used to launch the kernel (see OpenCL NDRange) 
 % - Local OpenCL Range used to launch the kernel (see OpenCL NDRange). This
 % value can be set to 0 to let OpenCL decide the best values
-% - Number of variables passed to the kernel
 % - List of varaibles to be used by the kernel - they will be passed in the
 % same order to the kernel itself. In case these variables get changed by
 % the kernel, the value of the input variable will change automatically
@@ -50,7 +49,7 @@ end
 % only / 2 - kernel write only.
 %
 %This function returns the runtime of the actual kernel in ms
-[run_time]=cl_run_kernel(1,'test',global_range,local_range,2,in1,in2,0);
+[run_time]=cl_run_kernel(1,'test',global_range,local_range,in1,in2,0);
 
 % This example shows how to compile and execute a kernel in a single pass.
 %  The arguments are as follows:
@@ -62,7 +61,6 @@ end
 % - Global OpenCL Range used to launch the kernel (see OpenCL NDRange) 
 % - Local OpenCL Range used to launch the kernel (see OpenCL NDRange). This
 % value can be set to 0 to let OpenCL decide the best values
-% - Number of variables passed to the kernel
 % - List of varaibles to be used by the kernel - they will be passed in the
 % same order to the kernel itself. In case these variables get changed by
 % the kernel, the value of the input variable will change automatically
@@ -70,4 +68,4 @@ end
 % only / 2 - kernel write only.
 %
 %This function returns the runtime of the actual kernel in ms
-[run_time]=cl_run_kernel(1,'test_kernel.cl','-DDT=5.0','test2',global_range,local_range,2,in1,in2,[0 1]);
+[run_time]=cl_run_kernel(1,'test_kernel.cl','-DDT=5.0','test2',global_range,local_range,in1,in2,[0 1]);
