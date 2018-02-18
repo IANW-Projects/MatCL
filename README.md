@@ -17,14 +17,14 @@ max_mem: The available device memory in bytes<br/>
 
 
 Build Kernel:<br/>
-[kernels]=cl_run_kernel(ocl_dev_id,'kernel_url.cl','defines');<br/>
+[comp_time,kernels]=cl_run_kernel(ocl_dev_id,'kernel_url.cl','defines');<br/>
 ocl_dev_id: ID of the OpenCL device to be used<br/>
 kernel_url.cl: URL of the kernel file<br/>
 defines: List of OpenCL compiler defines<br/>
 kernels: List with names of all available kernels<br/>
 
 Run Kernel:<br/>
-[run_time]=cl_run_kernel(ocl_dev_id,','kernel_function',global_range,local_range,in1,out1,[rw_flags]);<br/>
+[run_time,copy_time]=cl_run_kernel(ocl_dev_id,','kernel_function',global_range,local_range,in1,out1,[rw_flags]);<br/>
 ocl_dev_id: ID of the OpenCL device to be used<br/>
 kernel_function: Name of the kernel function to execute<br/>
 global_range: Global OpenCL range (see NDRange)<br/>
