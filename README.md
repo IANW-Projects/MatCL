@@ -43,7 +43,7 @@ local_range: Local OpenCL range (see NDRange)<br/>
 in1, out1: List of variables to pass from/to kernel<br/>
 rw_flags: read/write flag for the Kernel variables, this can either be scalar (all variables are read&write) or a vector with an entry for each variable: 0 - read&write / 1 - kernel read only / 2 - kernel write only<br/>
 
-Build & Run Kernel (with Kernel printf redirection - Windows only):<br/>
+Build & Run Kernel (with Kernel printf redirection):<br/>
 [run_time]=cl_dbg_kernel(ocl_dev_id,' kernel_url.cl ','defines ','kernel_function',global_range,local_range,in1,out1,[rw_flags]);<br/>
 ocl_dev_id: ID of the OpenCL device to be used<br/>
 kernel_url.cl: URL of the kernel file<br/>

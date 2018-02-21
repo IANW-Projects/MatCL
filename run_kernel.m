@@ -49,7 +49,7 @@ end
 % only / 2 - kernel write only.
 %
 %This function returns the runtime of the actual kernel and teh buffer copy time in us
-[run_time,copy_time]=cl_run_kernel(1,'test',global_range,local_range,in1,in2,0);
+[run_time,copy_time]=cl_run_kernel(1,'test1',global_range,local_range,in1,in2,0);
 
 % This example shows how to compile and execute a kernel in a single pass.
 %  The arguments are as follows:
@@ -69,3 +69,9 @@ end
 %
 %This function returns the runtime of the actual kernel in ms
 [run_time]=cl_run_kernel(1,'test_kernel.cl','-DDT=5.0','test2',global_range,local_range,in1,in2,[0 1]);
+
+
+ %Same as above. but this functions pipes kernel printf to Matlab
+[run_time]=cl_dbg_kernel(1,'test_kernel.cl','-DDT=5.0','test2',global_range,local_range,in1,in2,[0 1]);
+
+

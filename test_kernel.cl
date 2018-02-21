@@ -4,7 +4,7 @@
     #error "IEEE-754 double precision not supported by OpenCL implementation."
 #endif
 
-kernel void test(global double4 *d_1,global double4 *d_2)
+kernel void test1(global double4 *d_1,global double4 *d_2)
 {
   uint idx = get_global_id(0);
   
@@ -17,7 +17,7 @@ kernel void test(global double4 *d_1,global double4 *d_2)
 kernel void test2(global double4 *d_1,global double4 *d_2)
 {
   uint idx = get_global_id(0);
-  
+  printf("Test: %d \n",idx);
     d_1[idx].w=d_2[idx].w+DT;
  
 };
