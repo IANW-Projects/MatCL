@@ -10,11 +10,12 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 Usage:
 <br>
 Enumerate OpenCL Devices:<br/>
-[names,dev_class,max_mem]=cl_get_devices;<br/>
+[names,dev_class,max_mem,max_wg_size,max_local_work_size]=cl_get_devices;<br/>
 names: Names of all available devices<br/>
 dev_class: The device class (CPU, GPU or Other for other or unknown Accelerators)<br/>
 max_mem: The available device memory in bytes<br/>
-
+max_wg_size: Max. size of OpenCL work group<br/>
+max_local_work_size: Max. size of work items<br/>
 
 Build Kernel:<br/>
 [comp_time,kernels]=cl_run_kernel(ocl_dev_id,'kernel_url.cl','defines');<br/>

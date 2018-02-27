@@ -8,4 +8,4 @@ clc
 %(CPU, GPU or Other for other or unknown Accelerators) and the availble
 %device meory in bytes. To choose a device use the index of the
 %corresponding entry in the names array.
-[names,dev_class,max_mem]=cl_get_devices
+[dev_name,dev_type,max_mem,wg_size,lw_size]=cl_get_devices;
