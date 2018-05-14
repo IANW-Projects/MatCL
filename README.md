@@ -10,12 +10,13 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 Usage:
 <br>
 Enumerate OpenCL Devices:<br/>
-[names,dev_class,max_mem,max_wg_size,max_local_work_size]=cl_get_devices;<br/>
+[names,dev_class,max_mem,max_wg_size,max_local_work_size,compute_units]=cl_get_devices;<br/>
 names: Names of all available devices<br/>
 dev_class: The device class (CPU, GPU or Other for other or unknown Accelerators)<br/>
 max_mem: The available device memory in bytes<br/>
 max_wg_size: Max. size of OpenCL work group<br/>
 max_local_work_size: Max. size of work items<br/>
+compute_units: Number of compute units (i.e. CPU cores) of the device<br/>
 
 Build Kernel:<br/>
 [comp_time,kernels]=cl_run_kernel(ocl_dev_id,'kernel_url.cl','defines');<br/>
@@ -25,21 +26,21 @@ defines: List of OpenCL compiler defines<br/>
 kernels: List with names of all available kernels<br/>
 
 Run Kernel:<br/>
-[run_time,copy_time]=cl_run_kernel(ocl_dev_id,','kernel_function',global_range,local_range,in1,out1,[rw_flags]);<br/>
+[run_time,copy_time]=cl_run_kernel(ocl_dev_id,',{'kernel_function1','kernel_function2'},global_range,local_range,in1,out1,[rw_flags]);<br/>
 ocl_dev_id: ID of the OpenCL device to be used<br/>
-kernel_function: Name of the kernel function to execute<br/>
-global_range: Global OpenCL range (see NDRange)<br/>
-local_range: Local OpenCL range (see NDRange)<br/>
+kernel_function: Cell array of kernel functions to execute (can also be a signal string)<br/>
+global_range: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size. <br/>
+local_range: 3D local OpenCL range (see NDRange)<br/>
 in1, out1: List of variables to pass from/to kernel<br/>
 rw_flags: read/write flag for the Kernel variables, this can either be scalar (all variables are read&write) or a vector with an entry for each variable: 0 - read&write / 1 - kernel read only / 2 - kernel write only<br/>
 
 Build & Run Kernel:<br/>
-[run_time]=cl_run_kernel(ocl_dev_id,' kernel_url.cl ','defines ','kernel_function',global_range,local_range,in1,out1,[rw_flags]);<br/>
+[run_time]=cl_run_kernel(ocl_dev_id,'kernel_url.cl ','defines ','kernel_function',global_range,local_range,in1,out1,[rw_flags]);<br/>
 ocl_dev_id: ID of the OpenCL device to be used<br/>
 kernel_url.cl: URL of the kernel file<br/>
 defines: List of OpenCL compiler defines<br/>
-kernel_function: Name of the kernel function to execute<br/>
-global_range: Global OpenCL range (see NDRange)<br/>
+kernel_function: Cell array of kernel functions to execute (can also be a signal string)<br/>
+global_range: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size. <br/>
 local_range: Local OpenCL range (see NDRange)<br/>
 in1, out1: List of variables to pass from/to kernel<br/>
 rw_flags: read/write flag for the Kernel variables, this can either be scalar (all variables are read&write) or a vector with an entry for each variable: 0 - read&write / 1 - kernel read only / 2 - kernel write only<br/>
@@ -49,8 +50,8 @@ Build & Run Kernel (with Kernel printf redirection):<br/>
 ocl_dev_id: ID of the OpenCL device to be used<br/>
 kernel_url.cl: URL of the kernel file<br/>
 defines: List of OpenCL compiler defines<br/>
-kernel_function: Name of the kernel function to execute<br/>
-global_range: Global OpenCL range (see NDRange)<br/>
+kernel_function: Cell array of kernel functions to execute (can also be a signal string)<br/>
+global_range: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size.<br/>
 local_range: Local OpenCL range (see NDRange)<br/>
 in1, out1: List of variables to pass from/to kernel<br/>
 rw_flags: read/write flag for the Kernel variables, this can either be scalar (all variables are read&write) or a vector with an entry for each variable: 0 - read&write / 1 - kernel read only / 2 - kernel write only<br/>
