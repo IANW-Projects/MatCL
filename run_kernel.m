@@ -38,7 +38,8 @@ end
 % This example shows how to run a precompiled kernel. The
 % arguments are as follows:
 % - OpenCl Device ID - see cl_get_devices
-% - Name of the function to run
+% - Name of the function to run or cell array of kernel names to queue
+% multiple kernels
 % - Global OpenCL Range used to launch the kernel (see OpenCL NDRange) 
 % - Local OpenCL Range used to launch the kernel (see OpenCL NDRange). This
 % value can be set to 0 to let OpenCL decide the best values
@@ -57,7 +58,8 @@ end
 % - Kernel file URL
 % - Kernel defines, can be used to efficently define constant values or set
 % other compiler arguments
-% - Name of the function to run
+% - Name of the function to run or cell array of kernel names to queue
+% multiple kernels
 % - Global OpenCL Range used to launch the kernel (see OpenCL NDRange) 
 % - Local OpenCL Range used to launch the kernel (see OpenCL NDRange). This
 % value can be set to 0 to let OpenCL decide the best values
