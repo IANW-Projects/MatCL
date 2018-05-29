@@ -67,3 +67,8 @@ There may be problems with old C libraries of Matlab under Linux, resulting in e
 `Invalid MEX-file '/..../cl_get_devices.mex64'`, followed by many missing symbols. If you use
 some Debian based system, install the package `matlab-support` via `sudo apt-get install matlab-support`
 and choose the option to rename the GGC libraries of Matlab during setup.
+
+
+## Reference
+
+MatCL can be referenced using the DOI https://doi.org/10.1145/3204919.3204927
