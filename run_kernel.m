@@ -1,3 +1,5 @@
+%This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license.
+
 clear all
 close all
 clc
@@ -30,9 +32,12 @@ end
 % - Kernel defines, can be used to efficently define constant values or set
 % other compiler arguments
 %
-%This functions returns the compile time (in us) an array with the names of the compiled kernel
+%This functions returns the compile time (in us) and an array with the names of the compiled kernel
 %functions
-[comp_time,kernels]=cl_run_kernel(1,'test_kernel.cl','-DDT=1.0');
+%The OpenCL optimization flags -cl-mad-enable -cl-no-signed-zeros
+%-cl-finite-math-only were tested on diffrent devices and sould not cause
+%unexpected behaviour
+[comp_time,kernels]=cl_run_kernel(1,'test_kernel.cl','-DDT=1.0 -cl-mad-enable -cl-no-signed-zeros -cl-finite-math-only');
 
 
 % This example shows how to run a precompiled kernel. The
@@ -70,10 +75,10 @@ end
 % only / 2 - kernel write only.
 %
 %This function returns the runtime of the actual kernel in ms
-[run_time]=cl_run_kernel(1,'test_kernel.cl','-DDT=5.0','test2',global_range,local_range,in1,in2,[0 1]);
+[run_time]=cl_run_kernel(1,'test_kernel.cl','-DDT=5.0 -cl-mad-enable -cl-no-signed-zeros -cl-finite-math-only','test2',global_range,local_range,in1,in2,[0 1]);
 
 
  %Same as above. but this functions pipes kernel printf to Matlab
-[run_time]=cl_dbg_kernel(1,'test_kernel.cl','-DDT=5.0','test2',global_range,local_range,in1,in2,[0 1]);
+[run_time]=cl_dbg_kernel(1,'test_kernel.cl','-DDT=5.0 -cl-mad-enable -cl-no-signed-zeros -cl-finite-math-only','test2',global_range,local_range,in1,in2,[0 1]);
 
 

@@ -60,8 +60,8 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
 ## Setup
 
-Just use `git clone git@github.com:philipheinisch/MatCL.git` and add the folder `MatCL` to the
-search path of Matlab.
+Just use `git clone git@github.com:philipheinisch/MatCL.git` and run compile_lx.m or compile_win.m to compile MatCL. Depending on the OpenCL libraries used, the library path may have to be changed.
+Than add the folder `MatCL` to the search path of Matlab.
 
 There may be problems with old C libraries of Matlab under Linux, resulting in errors such as 
 `Invalid MEX-file '/..../cl_get_devices.mex64'`, followed by many missing symbols. If you use
@@ -72,3 +72,7 @@ and choose the option to rename the GGC libraries of Matlab during setup.
 ## Reference
 
 MatCL can be referenced using the DOI https://doi.org/10.1145/3204919.3204927
+
+## License
+
+This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license.
