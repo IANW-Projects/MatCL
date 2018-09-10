@@ -1,3 +1,5 @@
+/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license. */
+
 #ifdef cl_khr_fp64
     #pragma OPENCL EXTENSION cl_khr_fp64 : enable
 #else
@@ -21,9 +23,3 @@ kernel void test2(global double4 *d_1,global double4 *d_2)
     d_1[idx].w=d_2[idx].w+DT;
  
 };
-
-
-
-
-
-

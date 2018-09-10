@@ -80,5 +80,3 @@ end
 
  %Same as above. but this functions pipes kernel printf to Matlab
 [run_time]=cl_dbg_kernel(1,'test_kernel.cl','-DDT=5.0 -cl-mad-enable -cl-no-signed-zeros -cl-finite-math-only','test2',global_range,local_range,in1,in2,[0 1]);
-
-
