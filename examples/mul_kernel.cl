@@ -1,3 +1,5 @@
+/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license. */
+
 // enable double precision (not enabled by default)
 
 #ifdef cl_khr_fp64
@@ -30,9 +32,3 @@ kernel void MM(const global double *A,const global double *B,global double *C)
 
  
 };
-
-
-
-
-
-

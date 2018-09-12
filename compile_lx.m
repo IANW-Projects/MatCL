@@ -1,4 +1,4 @@
-#This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license.
+%This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license.
 
 close all
 clear all
