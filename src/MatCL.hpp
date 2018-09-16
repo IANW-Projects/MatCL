@@ -1,5 +1,3 @@
-/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license. */
-
 #include <math.h>
 #include "mex.h"
 #include "matrix.h"
@@ -531,35 +529,59 @@ int32_t compilerun(mxArray *plhs[], int nrhs, const mxArray*prhs[], ocl_dev_mgr 
 
 	//NDRange settings
 	//global range
-	double  *range_ptr;
-
 
 	size_t mrows = mxGetM(prhs[4]);
 	size_t ncols = mxGetN(prhs[4]);
 
-	if (mxIsDouble(prhs[4]) && !mxIsComplex(prhs[4]) && (mrows * ncols == 3)) {
-		range_ptr = mxGetPr(prhs[4]);
-		work_size_x = (uint32_t)round(range_ptr[0]);
-		work_size_y = (uint32_t)round(range_ptr[1]);
-		work_size_z = (uint32_t)round(range_ptr[2]);
+	if ((mxIsDouble(prhs[4]) || (mxGetClassID(prhs[4])== mxUINT32_CLASS)) && !mxIsComplex(prhs[4]) && (mrows * ncols == 3)) {
+		if (mxIsDouble(prhs[4])) {
+			
+			double  *range_ptr;
+			range_ptr = mxGetPr(prhs[4]);
+				work_size_x = (uint32_t)round(range_ptr[0]);
+				work_size_y = (uint32_t)round(range_ptr[1]);
+				work_size_z = (uint32_t)round(range_ptr[2]);
+		}
+		else {
+			uint32_t  *range_ptr;
+			range_ptr = (uint32_t *)mxGetData(prhs[4]);
 
+			work_size_x = (uint32_t)(range_ptr[0]);
+			work_size_y = (uint32_t)(range_ptr[1]);
+			work_size_z = (uint32_t)(range_ptr[2]);
+		
+		}
 		global_range = cl::NDRange(work_size_x, work_size_y, work_size_z);
 
 	}
 	else {
-		if (mxIsDouble(prhs[4]) && !mxIsComplex(prhs[4]) && (mrows * ncols == 6)) {
+		if ((mxIsDouble(prhs[4]) || (mxGetClassID(prhs[4]) == mxUINT32_CLASS)) && !mxIsComplex(prhs[4]) && (mrows * ncols == 6)) {
+			if (mxIsDouble(prhs[4])) {
+			double  *range_ptr;
 			range_ptr = mxGetPr(prhs[4]);
 
 			work_size_x = (uint32_t)round(range_ptr[0]);
 			work_size_y = (uint32_t)round(range_ptr[1]);
 			work_size_z = (uint32_t)round(range_ptr[2]);
 
-			range_start = cl::NDRange(work_size_x, work_size_y, work_size_z);
-
 			work_size_x = (uint32_t)round(range_ptr[3]);
 			work_size_y = (uint32_t)round(range_ptr[4]);
 			work_size_z = (uint32_t)round(range_ptr[5]);
 
+			}
+			else {
+				uint32_t  *range_ptr;
+				range_ptr = (uint32_t *)mxGetData(prhs[4]);
+
+				work_size_x = (uint32_t)(range_ptr[0]);
+				work_size_y = (uint32_t)(range_ptr[1]);
+				work_size_z = (uint32_t)(range_ptr[2]);
+
+				work_size_x = (uint32_t)(range_ptr[3]);
+				work_size_y = (uint32_t)(range_ptr[4]);
+				work_size_z = (uint32_t)(range_ptr[5]);
+			}
+			range_start = cl::NDRange(work_size_x, work_size_y, work_size_z);
 			global_range = cl::NDRange(work_size_x, work_size_y, work_size_z);
 		}
 		else {
@@ -573,12 +595,22 @@ int32_t compilerun(mxArray *plhs[], int nrhs, const mxArray*prhs[], ocl_dev_mgr 
 	mrows = mxGetM(prhs[5]);
 	ncols = mxGetN(prhs[5]);
 
-	if (mxIsDouble(prhs[5]) && !mxIsComplex(prhs[5]) && (mrows + ncols == 4)) {
-		range_ptr = mxGetPr(prhs[5]);
-		work_size_x = (uint32_t)round(range_ptr[0]);
-		work_size_y = (uint32_t)round(range_ptr[1]);
-		work_size_z = (uint32_t)round(range_ptr[2]);
+	if ((mxIsDouble(prhs[5]) || (mxGetClassID(prhs[5]) == mxUINT32_CLASS)) && (mrows + ncols == 4)) {
+		if (mxIsDouble(prhs[5])) {
+			double  *range_ptr;
+			range_ptr = mxGetPr(prhs[5]);
+			work_size_x = (uint32_t)round(range_ptr[0]);
+			work_size_y = (uint32_t)round(range_ptr[1]);
+			work_size_z = (uint32_t)round(range_ptr[2]);
+		}
+		else {
+			uint32_t  *range_ptr;
+			range_ptr = (uint32_t *)mxGetData(prhs[5]);
 
+			work_size_x = (uint32_t)(range_ptr[0]);
+			work_size_y = (uint32_t)(range_ptr[1]);
+			work_size_z = (uint32_t)(range_ptr[2]);
+		}
 		local_range = cl::NDRange(work_size_x, work_size_y, work_size_z);
 	//	printf("Local work Size: %d/%d/%d\n", work_size_x, work_size_y, work_size_z);
 
