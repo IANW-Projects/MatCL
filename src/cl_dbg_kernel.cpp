@@ -1,4 +1,4 @@
-/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license. */
+/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 4.0 license. */
 
 #include <math.h>
 #include "mex.h"
@@ -47,7 +47,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray*prhs[])
 {
 
 	ocl_dev_mgr& dev_mgr = ocl_dev_mgr::getInstance();
-	
+
 	uint32_t device = (uint32_t)mxGetScalar(prhs[0]) - 1;
 
 	if (nrhs>2) {
@@ -55,7 +55,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray*prhs[])
 		if (device<dev_mgr.get_avail_dev_num()) {
 			dev_mgr.deinitalize();
 			compilerun(plhs, nrhs, prhs, &dev_mgr, device, true,false);
-		
+
 		}
 
 		else {

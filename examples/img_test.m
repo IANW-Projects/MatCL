@@ -1,4 +1,4 @@
-% This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license.
+% This project is licensed under the terms of the Creative Commons CC BY-NC-ND 4.0 license.
 
 clear all
 clc
@@ -10,7 +10,7 @@ device=1;
 %Either load test image from .mat file or take an image using a camera(requires webcam support package)
 %cam_img = snapshot(webcam);
 load('imgData.mat');
-cam_img = rgb2gray(cam_img); %transform to grayscale image 
+cam_img = rgb2gray(cam_img); %transform to grayscale image
 dims=size(cam_img); %get image size
 
 %add artificial noise to the image
@@ -27,7 +27,7 @@ cpu_time=toc;
 global_range=[3 3 0 dims(2)-6 dims(1)-6 1];
 local_range=[0];
 
-%Convert data to uint8 and transform to 1x(dims(1)*dims(2)) vector 
+%Convert data to uint8 and transform to 1x(dims(1)*dims(2)) vector
 imgData=uint8(reshape(nI',[1,dims(1)*dims(2)]));
 
 %Preallocate destination array

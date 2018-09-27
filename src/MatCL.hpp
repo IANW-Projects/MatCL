@@ -1,3 +1,8 @@
+/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 4.0 license. */
+
+#ifndef MATCL_H
+#define MATCL_H
+
 #include <math.h>
 #include "mex.h"
 #include "matrix.h"
@@ -103,7 +108,7 @@ int32_t getKernel_info(mxArray *plhs[], int nrhs, const mxArray*prhs[], ocl_dev_
 		mxGetString(prhs[1], kernel_url_c, (mwSize)buflen);
 		std::string kernel_url(kernel_url_c);
 		//mexPrintf("Kernel-URL:  %s\n", kernel_url_c);
-		if (dev_mgr->add_program_url(0, "ocl_Kernel", kernel_url) < 0) {  //Add kernel source  
+		if (dev_mgr->add_program_url(0, "ocl_Kernel", kernel_url) < 0) {  //Add kernel source
 			mexErrMsgIdAndTxt("MATLAB:cl_program", "OpenCl Kernel file not found!");
 			return -1;
 		}
@@ -156,7 +161,7 @@ int32_t runkernel(mxArray *plhs[], int nrhs, const mxArray*prhs[], std::vector<s
 		AllocConsole();
 
 #define con_rows 150
-#define con_cols 120	
+#define con_cols 120
 
 
 		//get info un biggest possible console buffer
@@ -396,9 +401,9 @@ int32_t runkernel(mxArray *plhs[], int nrhs, const mxArray*prhs[], std::vector<s
 				fclose(fp);
 			}
 		}
-		
 
-		
+
+
 #endif
 #if !defined(_WIN32)
 		std::fclose(fp);
@@ -440,7 +445,7 @@ int32_t runkernel(mxArray *plhs[], int nrhs, const mxArray*prhs[], std::vector<s
 
 	pull_time = timer.getTimeMicroseconds() - pull_time;
 	copy_time= push_time+pull_time;
-	
+
 
 	return 0;
 
@@ -451,7 +456,7 @@ int32_t runkernel(mxArray *plhs[], int nrhs, const mxArray*prhs[], std::vector<s
 int32_t compilerun(mxArray *plhs[], int nrhs, const mxArray*prhs[], ocl_dev_mgr *dev_mgr, uint32_t device, bool debug_mode,bool log_file)
 {
 
-	
+
 	bool blocking = CL_FALSE;
 	uint64_t mem_needed = 0;
 	std::vector<std::string> kernel_list;
@@ -535,7 +540,7 @@ int32_t compilerun(mxArray *plhs[], int nrhs, const mxArray*prhs[], ocl_dev_mgr 
 
 	if ((mxIsDouble(prhs[4]) || (mxGetClassID(prhs[4])== mxUINT32_CLASS)) && !mxIsComplex(prhs[4]) && (mrows * ncols == 3)) {
 		if (mxIsDouble(prhs[4])) {
-			
+
 			double  *range_ptr;
 			range_ptr = mxGetPr(prhs[4]);
 				work_size_x = (uint32_t)round(range_ptr[0]);
@@ -549,7 +554,7 @@ int32_t compilerun(mxArray *plhs[], int nrhs, const mxArray*prhs[], ocl_dev_mgr 
 			work_size_x = (uint32_t)(range_ptr[0]);
 			work_size_y = (uint32_t)(range_ptr[1]);
 			work_size_z = (uint32_t)(range_ptr[2]);
-		
+
 		}
 		global_range = cl::NDRange(work_size_x, work_size_y, work_size_z);
 
@@ -631,7 +636,7 @@ int32_t compilerun(mxArray *plhs[], int nrhs, const mxArray*prhs[], ocl_dev_mgr 
 	uint32_t num_in = (uint32_t)nrhs - 7;//Number of input buffers
 
 	uint32_t var_offset = 6;
-	
+
 
 
 	runkernel(plhs, nrhs, prhs, kernel_list, num_in,var_offset, dev_mgr, device, range_start, global_range, local_range, debug_mode,log_file,copy_time);
@@ -645,3 +650,5 @@ int32_t compilerun(mxArray *plhs[], int nrhs, const mxArray*prhs[], ocl_dev_mgr 
 
 	return 0;
 }
+
+#endif // MATCL_H

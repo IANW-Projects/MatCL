@@ -1,3 +1,4 @@
+/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 4.0 license. */
 
 #include <math.h>
 #include "mex.h"
@@ -6,7 +7,7 @@
 #include <string>
 #if defined(_WIN32)
 #include <windows.h>
-#include <io.h> 
+#include <io.h>
 #define access    _access_s
 #else
 #include <unistd.h>
@@ -48,7 +49,7 @@ static scoped_redirect_cout mycout_redirect;
 
 
 void mexFunction( int nlhs, mxArray *plhs[],   int nrhs, const mxArray*prhs[] )
-{ 
+{
 
 	size_t buflen;
 	char *buf;
@@ -75,11 +76,11 @@ void mexFunction( int nlhs, mxArray *plhs[],   int nrhs, const mxArray*prhs[] )
 	ocl_dev_mgr& dev_mgr = ocl_dev_mgr::getInstance();
 
 	uint32_t device = (uint32_t)mxGetScalar(prhs[0]) - 1;
-	
+
     if (nrhs>2) {
-    
+
 	if (device<dev_mgr.get_avail_dev_num() ) {
-        
+
 
 		bool old_instance = false;
 		bool compile_only = false;
@@ -147,14 +148,14 @@ void mexFunction( int nlhs, mxArray *plhs[],   int nrhs, const mxArray*prhs[] )
 				plhs[1] = cell_array_ptr;
 
 			}
-			
+
 			//	mexLock(); //prevent matlab from unloading mex file to keep context alive
 
 		}
-		
+
 	//this part only runs the kernel
 	if ((compile_only == false) && (old_instance == true)) {
-		
+
 		uint32_t num_in = (uint32_t)nrhs-5;//Number of input buffers
 
 		uint32_t var_offset = 4;
@@ -192,7 +193,7 @@ void mexFunction( int nlhs, mxArray *plhs[],   int nrhs, const mxArray*prhs[] )
 
 		//NDRange settings
 		//global range
-		
+
 		size_t mrows = mxGetM(prhs[2]);
 		size_t ncols = mxGetN(prhs[2]);
 
@@ -288,7 +289,7 @@ void mexFunction( int nlhs, mxArray *plhs[],   int nrhs, const mxArray*prhs[] )
 				return;
 			}
 		}
-		
+
 		runkernel(plhs, nrhs, prhs, kernel_list, num_in,var_offset, &dev_mgr, device, range_start,global_range, local_range, false,false,copy_time);
 
 		uint64_t  *copy_time_ptr;
