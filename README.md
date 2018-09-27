@@ -78,8 +78,8 @@ and choose the option to rename the GGC libraries of Matlab during setup.
 MatCL can be referenced using the DOI [10.1145/3204919.3204927](https://doi.org/10.1145/3204919.3204927)
 and the following bibtex entry.
 ```
-@inproceedings{ostaszewski2018advantages,
-  title={Advantages and Pitfalls of {OpenCL} in Computational Physics},
+@inproceedings{heinisch2018MatCL,
+  title={{MatCL}: {A} new easy-to use {OpenCL} toolbox for {MathWorks} {Matlab}},
   author={Heinisch, Philip and Ostaszewski, Katharina},
   year={2018},
   pages={8:1--8:1},
@@ -87,6 +87,7 @@ and the following bibtex entry.
   series={IWOCL '18, May 2018, Oxford (United Kingdom)},
   publisher={ACM},
   address={New York, NY, USA},
+  note={\url{https://github.com/MuMPlaCL/MatCL}},
   doi={10.1145/3204919.3204927}
 }
 ```
