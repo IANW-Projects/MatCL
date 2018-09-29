@@ -1,4 +1,4 @@
-% This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license.
+% This project is licensed under the terms of the Creative Commons CC BY-NC-ND 4.0 license.
 
 close all
 clear all
@@ -46,9 +46,9 @@ tic;
 toc;
 time_str=sprintf('OpenCL Kernel time is %f seconds.',double(run_time)/1000/1000);
  disp(time_str)
- 
+
  C=double(zeros(num_rows,num_cols));
- 
+
 
 %%
 %Build and run kernel seperately

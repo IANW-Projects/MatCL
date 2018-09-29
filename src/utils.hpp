@@ -1,4 +1,7 @@
-/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license. */
+/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 4.0 license. */
+
+#ifndef UTILS_H
+#define UTILS_H
 
 #include <stdio.h>
 #include <fstream>
@@ -169,3 +172,5 @@ public:
         return (float) (1000ULL * 1000ULL);
     }
 };
+
+#endif // UTILS_H

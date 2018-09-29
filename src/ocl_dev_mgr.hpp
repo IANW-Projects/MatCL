@@ -1,4 +1,4 @@
-/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license. */
+/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 4.0 license. */
 
 #ifndef DEV_MGR_H
 #define DEV_MGR_H
@@ -36,12 +36,12 @@
 class ocl_dev_mgr {
  public:
         ~ocl_dev_mgr() {};
-        
+
         static ocl_dev_mgr& getInstance() {
         static ocl_dev_mgr instance;
         return instance;
-    } 
-    
+    }
+
         struct ocl_device_info{
          cl::Device device;
          std::string name;
@@ -57,18 +57,18 @@ class ocl_dev_mgr {
 		 cl_uint copy_perf;
          cl_uint double_perf;
          cl_uint float_perf;
-         
+
      };
 
-		
-        
-     cl_ulong init_device(cl_uint avail_device_idx);    	
+
+
+     cl_ulong init_device(cl_uint avail_device_idx);
      cl::CommandQueue& get_queue(cl_uint context_idx, cl_uint queue_idx);
      cl::Context& get_context(cl_uint context_idx);
      cl::Program& get_program(cl_uint context_idx, std::string prog_name);
      cl_ulong get_avail_dev_num();
      cl_ulong get_context_num();
-     ocl_device_info& get_avail_dev_info(cl_uint avail_device_idx); 
+     ocl_device_info& get_avail_dev_info(cl_uint avail_device_idx);
      ocl_device_info& get_context_dev_info(cl_uint context_idx,cl_uint device_idx);
      cl_ulong compile_kernel(cl_uint context_idx, std::string prog_name,const char* options);
     cl_ulong get_kernel_names(cl_uint context_idx,std::string prog_name,std::vector<std::string>& found_kernels);
@@ -83,8 +83,8 @@ class ocl_dev_mgr {
 	 cl::Kernel * getKernelbyID(cl_uint context_idx, std::string prog_name,cl_ulong kernel_id);
      std::string getDeviceType(cl_uint avail_device_idx);
 	 void deinitalize();
-private: 
-    
+private:
+
    const std::string type_cpu_str = "CPU";
    const std::string type_gpu_str = "GPU";
    const std::string type_acc_str = "ACCELERATOR";
@@ -99,15 +99,15 @@ private:
 	  std::vector<std::vector<std::string>> kernel_names;
       std::vector<ocl_device_info> devices;
     };
-    
+
     void initialize();
      ocl_dev_mgr();
      cl_ulong getDeviceList(std::vector<cl::Device>& devices);
-    
+
     ocl_device_info *available_devices;
     cl_ulong num_available_devices;
     std::vector<ocl_context> con_list;
-	
+
 //	std::vector<std::thread> compile_threads;
 };
 

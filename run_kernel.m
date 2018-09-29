@@ -1,4 +1,4 @@
-%This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license.
+%This project is licensed under the terms of the Creative Commons CC BY-NC-ND 4.0 license.
 
 clear all
 close all
@@ -14,15 +14,15 @@ local_range=[0];        %Let OpenCL decide local range, otherwise specify range 
 
 % Create input data for the kernel
 for i=1:20
-   in1(1,i)=double(1); 
-   in1(2,i)=double(1); 
-   in1(3,i)=double(1); 
-   in1(4,i)=double(1); 
-   
-   in2(1,i)=double(2); 
-   in2(2,i)=double(2); 
-   in2(3,i)=double(2); 
-   in2(4,i)=double(2); 
+   in1(1,i)=double(1);
+   in1(2,i)=double(1);
+   in1(3,i)=double(1);
+   in1(4,i)=double(1);
+
+   in2(1,i)=double(2);
+   in2(2,i)=double(2);
+   in2(3,i)=double(2);
+   in2(4,i)=double(2);
 end
 
 % This example shows how to only compile the kernel but not run it. The
@@ -45,7 +45,7 @@ end
 % - OpenCl Device ID - see cl_get_devices
 % - Name of the function to run or cell array of kernel names to queue
 % multiple kernels
-% - Global OpenCL Range used to launch the kernel (see OpenCL NDRange) 
+% - Global OpenCL Range used to launch the kernel (see OpenCL NDRange)
 % - Local OpenCL Range used to launch the kernel (see OpenCL NDRange). This
 % value can be set to 0 to let OpenCL decide the best values
 % - List of varaibles to be used by the kernel - they will be passed in the
@@ -65,7 +65,7 @@ end
 % other compiler arguments
 % - Name of the function to run or cell array of kernel names to queue
 % multiple kernels
-% - Global OpenCL Range used to launch the kernel (see OpenCL NDRange) 
+% - Global OpenCL Range used to launch the kernel (see OpenCL NDRange)
 % - Local OpenCL Range used to launch the kernel (see OpenCL NDRange). This
 % value can be set to 0 to let OpenCL decide the best values
 % - List of varaibles to be used by the kernel - they will be passed in the

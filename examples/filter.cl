@@ -1,12 +1,12 @@
-/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 3.0 license. */
+/* This project is licensed under the terms of the Creative Commons CC BY-NC-ND 4.0 license. */
 
-//2D median filter OpenCL example 
+//2D median filter OpenCL example
 kernel void filter(global uchar* pSrc, global uchar* pDst)
 {
-  
+
 	const int x = get_global_id(0);
     const int y = get_global_id(1);
-	
+
 	const int iOffset = y * (uint)WIDTH;
     const int iPrev = iOffset - (uint)WIDTH;
     const int iNext = iOffset + (uint)WIDTH;
@@ -116,7 +116,7 @@ kernel void filter(global uchar* pSrc, global uchar* pDst)
 
         r4 = min(r4, r6);
         r5 = min(r5, r7);
-	
+
 	pDst[iOffset + x] = (uchar)min(r4, r5);
-	
+
 }
