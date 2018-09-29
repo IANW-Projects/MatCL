@@ -10,6 +10,8 @@ MatCL is primarily intended to help in the development and testing of OpenCL ker
 Because MatCL handles the entire low-level process, this toolbox makes it possible to execute kernels without in depth knowledge of the host implementation necessary to support the execution of OpenCL kernels.
 MatCL is also optimized to allow efficient execution of OpenCL kernels within Matlab to accelerate computationally intensive tasks without having to rely on Nvidia CUDA. In addition to single command kernel execution, MatCL also allows for an independent two-step kernel compilation and launch workflow to save the kernel compile time and allow efficient repetitive kernel execution.
 
+A practical example for how MatCL can be used for scientific research is the [Induction Equation](https://github.com/MuMPlaCL/InductionEq) project.
+
 Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeon, Core, HD Graphics) devices with Matlab R2016b and up.
 
 ## Usage
@@ -67,7 +69,7 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 Just use `git clone git@github.com:philipheinisch/MatCL.git` and run compile_lx.m or compile_win.m to compile MatCL. Depending on the OpenCL libraries used, the library path may have to be changed.
 Than add the folder `MatCL` to the search path of Matlab.
 
-There may be problems with old C libraries of Matlab under Linux, resulting in errors such as
+There may be problems with old C/C++ libraries supplied by Matlab under Linux, resulting in errors such as
 `Invalid MEX-file '/..../cl_get_devices.mex64'`, followed by many missing symbols. If you use
 some Debian based system, install the package `matlab-support` via `sudo apt-get install matlab-support`
 and choose the option to rename the GGC libraries of Matlab during setup.
