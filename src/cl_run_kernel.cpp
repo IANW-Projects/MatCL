@@ -62,9 +62,12 @@ void mexFunction( int nlhs, mxArray *plhs[],   int nrhs, const mxArray*prhs[] )
 	std::vector<uint64_t> data_size;
 	std::vector<cl::Buffer*> dev_Buffers;
 
-	uint32_t work_size_x = 1;
-	uint32_t work_size_y = 1;
-	uint32_t work_size_z = 1;
+	uint32_t global_range_x = 1;
+	uint32_t global_range_y = 1;
+	uint32_t global_range_z = 1;
+	uint32_t range_start_x = 0;
+	uint32_t range_start_y = 0;
+	uint32_t range_start_z = 0;
 	cl::NDRange range_start = cl::NullRange;
 	cl::NDRange global_range;
 	cl::NDRange local_range;
@@ -202,21 +205,21 @@ void mexFunction( int nlhs, mxArray *plhs[],   int nrhs, const mxArray*prhs[] )
 				double  *range_ptr;
 			range_ptr = mxGetPr(prhs[2]);
 
-			work_size_x = (uint32_t)round(range_ptr[0]);
-			work_size_y = (uint32_t)round(range_ptr[1]);
-			work_size_z = (uint32_t)round(range_ptr[2]);
+			global_range_x = (uint32_t)round(range_ptr[0]);
+			global_range_y = (uint32_t)round(range_ptr[1]);
+			global_range_z = (uint32_t)round(range_ptr[2]);
 			}
 			else {
 				uint32_t  *range_ptr;
 				range_ptr = (uint32_t *)mxGetData(prhs[2]);
 
-				work_size_x = (uint32_t)(range_ptr[0]);
-				work_size_y = (uint32_t)(range_ptr[1]);
-				work_size_z = (uint32_t)(range_ptr[2]);
+				global_range_x = (uint32_t)(range_ptr[0]);
+				global_range_y = (uint32_t)(range_ptr[1]);
+				global_range_z = (uint32_t)(range_ptr[2]);
 
 			}
 
-			global_range = cl::NDRange(work_size_x, work_size_y, work_size_z);
+			global_range = cl::NDRange(global_range_x, global_range_y, global_range_z);
 
 		}
 		else {
@@ -224,30 +227,30 @@ void mexFunction( int nlhs, mxArray *plhs[],   int nrhs, const mxArray*prhs[] )
 				if (mxIsDouble(prhs[2])) {
 					double  *range_ptr;
 					range_ptr = mxGetPr(prhs[2]);
-				work_size_x = (uint32_t)round(range_ptr[0]);
-				work_size_y = (uint32_t)round(range_ptr[1]);
-				work_size_z = (uint32_t)round(range_ptr[2]);
+				range_start_x = (uint32_t)round(range_ptr[0]);
+				range_start_y = (uint32_t)round(range_ptr[1]);
+				range_start_z = (uint32_t)round(range_ptr[2]);
 
-				work_size_x = (uint32_t)round(range_ptr[3]);
-				work_size_y = (uint32_t)round(range_ptr[4]);
-				work_size_z = (uint32_t)round(range_ptr[5]);
+				global_range_x = (uint32_t)round(range_ptr[3]);
+				global_range_y = (uint32_t)round(range_ptr[4]);
+				global_range_z = (uint32_t)round(range_ptr[5]);
 
 				}
 				else {
 					uint32_t  *range_ptr;
 					range_ptr = (uint32_t *)mxGetData(prhs[2]);
 
-					work_size_x = (uint32_t)(range_ptr[0]);
-					work_size_y = (uint32_t)(range_ptr[1]);
-					work_size_z = (uint32_t)(range_ptr[2]);
+					range_start_x = (uint32_t)(range_ptr[0]);
+					range_start_y = (uint32_t)(range_ptr[1]);
+					range_start_z = (uint32_t)(range_ptr[2]);
 
-					work_size_x = (uint32_t)(range_ptr[3]);
-					work_size_y = (uint32_t)(range_ptr[4]);
-					work_size_z = (uint32_t)(range_ptr[5]);
+					global_range_x = (uint32_t)(range_ptr[3]);
+					global_range_y = (uint32_t)(range_ptr[4]);
+					global_range_z = (uint32_t)(range_ptr[5]);
 				}
 
-				range_start = cl::NDRange(work_size_x, work_size_y, work_size_z);
-				global_range = cl::NDRange(work_size_x, work_size_y, work_size_z);
+				range_start = cl::NDRange(range_start_x, range_start_y, range_start_z);
+				global_range = cl::NDRange(global_range_x, global_range_y, global_range_z);
 			}
 			else {
 				mexErrMsgIdAndTxt("OpenCL:NDRange", "Invalid global range defined!");
@@ -263,21 +266,21 @@ void mexFunction( int nlhs, mxArray *plhs[],   int nrhs, const mxArray*prhs[] )
 			if (mxIsDouble(prhs[3])) {
 				double  *range_ptr;
 				range_ptr = mxGetPr(prhs[3]);
-			work_size_x = (uint32_t)round(range_ptr[0]);
-			work_size_y = (uint32_t)round(range_ptr[1]);
-			work_size_z = (uint32_t)round(range_ptr[2]);
+			global_range_x = (uint32_t)round(range_ptr[0]);
+			global_range_y = (uint32_t)round(range_ptr[1]);
+			global_range_z = (uint32_t)round(range_ptr[2]);
 
 		}
 		else {
 			uint32_t  *range_ptr;
 			range_ptr = (uint32_t *)mxGetData(prhs[3]);
 
-			work_size_x = (uint32_t)(range_ptr[0]);
-			work_size_y = (uint32_t)(range_ptr[1]);
-			work_size_z = (uint32_t)(range_ptr[2]);
+			global_range_x = (uint32_t)(range_ptr[0]);
+			global_range_y = (uint32_t)(range_ptr[1]);
+			global_range_z = (uint32_t)(range_ptr[2]);
 		}
 
-			local_range = cl::NDRange(work_size_x, work_size_y, work_size_z);
+			local_range = cl::NDRange(global_range_x, global_range_y, global_range_z);
 
 		}
 		else {
