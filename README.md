@@ -16,7 +16,7 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
 ## Usage
 
- Usage information for the individual functions is available through the Matlab `help` command i.e. `help cl_get_devices`.
+ Usage information for the individual functions is available through the Matlab `help` command (e.g. `help cl_get_devices`) and the documentation browser (e.g. `doc cl_get_devices`).
 
 - Enumerate OpenCL Devices:
   `[names,dev_class,max_mem,max_wg_size,max_local_work_size,compute_units]=cl_get_devices;`
@@ -77,13 +77,14 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
 ## Setup
 
-Just use `git clone https://github.com/MuMPlaCL/MatCL.git` and run compile_lx.m or compile_win.m to compile MatCL. Depending on the OpenCL libraries used, the library path may have to be changed.
-Than add the folder `MatCL` to the search path of Matlab. **Alternatively, precompiled binaries are available at https://github.com/MuMPlaCL/MatCL/releases**
+Just use `git clone https://github.com/MuMPlaCL/MatCL.git` and run `compile_lx.m` or `compile_win.m` to compile MatCL. Depending on the OpenCL libraries used, the library path may have to be changed.
+Than add the folder `MatCL` to the search path of Matlab. 
+**Alternatively, precompiled binaries are available at https://github.com/MuMPlaCL/MatCL/releases.**
 
 There may be problems with old C/C++ libraries supplied by Matlab under Linux, resulting in errors such as
 `Invalid MEX-file '/..../cl_get_devices.mex64'`, followed by many missing symbols. If you use
 a Debian based system, install the package `matlab-support` via `sudo apt-get install matlab-support`
-and choose the option to rename the GGC libraries of Matlab during setup.
+and choose the option to rename the GCC libraries of Matlab during setup.
 
 
 ## Reference
