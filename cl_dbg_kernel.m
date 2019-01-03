@@ -9,7 +9,7 @@
 %   ocl_dev_id: ID of the OpenCL device to be used
 %   kernel_url.cl: URL of the kernel file
 %   defines: List of OpenCL compiler defines
-%   kernel_function: Cell array of kernel functions to execute (can also be a signal string)
+%   kernel_function: Cell array of kernel functions to execute (can also be a single string for just one kernel)
 %   global_range: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size.
 %   local_range: Local OpenCL range (see NDRange)
 %   in1, out1: List of variables to pass from/to kernel
@@ -17,4 +17,4 @@
 %
 %   Outputs
 %   -------
-%   run_time:  Time it took to execute the kernels (might be slower due to printf redirection)
+%   run_time:  Microseconds it took to execute the kernels (might be slower due to printf redirection)

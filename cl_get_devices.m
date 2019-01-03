@@ -1,4 +1,4 @@
-%CL_GET_DEVICES Enumerate OpenCL devices
+%CL_GET_DEVICES Enumerate OpenCL devices (returns a list whose i-th entry corresponds to the i-th OpenCL device)
 %
 %
 %   [names, dev_class, max_mem, max_wg_size, max_local_work_size, compute_units] = cl_get_devices;
@@ -12,5 +12,5 @@
 %   max_mem: The available device memory in bytes
 %   max_wg_size: Max. size of OpenCL work group
 %   max_local_work_size: Max. size of work items
-%   compute_units: Number of compute units (i.e. CPU cores) of the device
+%   compute_units: Number of compute units (e.g. CPU cores) of the device
 %

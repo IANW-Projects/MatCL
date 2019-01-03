@@ -13,8 +13,9 @@
 %
 %   Outputs
 %   -------
-%   comp_time: Time it took to compile the kernels
+%   comp_time: Microseconds it took to compile the kernels
 %   kernels: List with names of all available kernels
+%
 %
 %   ----------
 %   Run Kernel
@@ -26,7 +27,7 @@
 %   Inputs
 %   -------
 %   ocl_dev_id: ID of the OpenCL device to be used
-%   kernel_function: Cell array of kernel functions to execute (can also be a signal string)
+%   kernel_function: Cell array of kernel functions to execute (can also be a single string for just one kernel)
 %   global_range: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size.
 %   local_range: 3D local OpenCL range (see NDRange)
 %   in1, out1: List of variables to pass from/to kernel
@@ -34,8 +35,9 @@
 %
 %   Outputs
 %   -------
-%   run_time:  Time it took to execute the kernels
-%   copy_time:  Time it took to copy all buffers
+%   run_time:  Microseconds it took to execute the kernels
+%   copy_time:  Microseconds it took to copy all buffers
+%
 %
 %   ------------------
 %   Build & Run Kernel
@@ -57,4 +59,4 @@
 %
 %   Outputs
 %   -------
-%   run_time:  Time it took to execute the kernels
+%   run_time:  Microseconds it took to execute the kernels

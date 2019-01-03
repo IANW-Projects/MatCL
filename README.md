@@ -18,18 +18,18 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
  Usage information for the individual functions is available through the Matlab `help` command (e.g. `help cl_get_devices`) and the documentation browser (e.g. `doc cl_get_devices`).
 
-- Enumerate OpenCL Devices:
+- Enumerate OpenCL Devices (returns a list whose i-th entry corresponds to the i-th OpenCL device):
   `[names,dev_class,max_mem,max_wg_size,max_local_work_size,compute_units]=cl_get_devices;`
   - `names`: Names of all available devices
   - `dev_class`: The device class (CPU, GPU or Other for other or unknown Accelerators)
   - `max_mem`: The available device memory in bytes
   - `max_wg_size`: Max. size of OpenCL work group
   - `max_local_work_size`: Max. size of work items
-  - `compute_units`: Number of compute units (i.e. CPU cores) of the device
+  - `compute_units`: Number of compute units (e.g. CPU cores) of the device
 
 - Build Kernel:
   `[comp_time,kernels]=cl_run_kernel(ocl_dev_id,'kernel_url.cl','defines');`
-  - `comp_time`: Time it took to compile the kernels
+  - `comp_time`: Microseconds it took to compile the kernels
   - `kernels`: List with names of all available kernels
   
   - `ocl_dev_id`: ID of the OpenCL device to be used
@@ -38,11 +38,11 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
   
 - Run Kernel:
   `[run_time,copy_time]=cl_run_kernel(ocl_dev_id,',{'kernel_function1','kernel_function2'},global_range,local_range,in1,out1,[rw_flags]);`
-  - `run_time`: Time it took to execute the kernels
-  - `copy_time`: Time it took to copy all buffers
+  - `run_time`: Microseconds it took to execute the kernels
+  - `copy_time`: Microseconds it took to copy all buffers
   
   - `ocl_dev_id`: ID of the OpenCL device to be used
-  - `kernel_function`: Cell array of kernel functions to execute (can also be a signal string)
+  - `kernel_function`: Cell array of kernel functions to execute (can also be a single string for just one kernel)
   - `global_range`: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size.
   - `local_range`: 3D local OpenCL range (see NDRange)
   - `in1, out1`: List of variables to pass from/to kernel
@@ -50,12 +50,12 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
 - Build & Run Kernel:
   `[run_time]=cl_run_kernel(ocl_dev_id,'kernel_url.cl ','defines ','kernel_function',global_range,local_range,in1,out1,[rw_flags]);`
-  - `run_time`: Time it took to execute the kernels
+  - `run_time`: Microseconds it took to execute the kernels
   
   - `ocl_dev_id`: ID of the OpenCL device to be used
   - `kernel_url.cl`: URL of the kernel file
   - `defines`: List of OpenCL compiler defines
-  - `kernel_function`: Cell array of kernel functions to execute (can also be a signal string)
+  - `kernel_function`: Cell array of kernel functions to execute (can also be a single string for just one kernel)
   - `global_range`: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size.
   - `local_range`: Local OpenCL range (see NDRange)
   - `in1, out1`: List of variables to pass from/to kernel
@@ -63,12 +63,12 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
 - Build & Run Kernel (with Kernel printf redirection):
   `[run_time]=cl_dbg_kernel(ocl_dev_id,' kernel_url.cl ','defines ','kernel_function',global_range,local_range,in1,out1,[rw_flags]);`
-  - `run_time`: Time it took to execute the kernels (might be slower due to printf redirection)
+  - `run_time`: Microseconds it took to execute the kernels (might be slower due to printf redirection)
   
   - `ocl_dev_id`: ID of the OpenCL device to be used
   - `kernel_url.cl`: URL of the kernel file
   - `defines`: List of OpenCL compiler defines
-  - `kernel_function`: Cell array of kernel functions to execute (can also be a signal string)
+  - `kernel_function`: Cell array of kernel functions to execute (can also be a single string for just one kernel)
   - `global_range`: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size.
   - `local_range`: Local OpenCL range (see NDRange)
   - `in1, out1`: List of variables to pass from/to kernel
