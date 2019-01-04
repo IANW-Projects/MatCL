@@ -2,7 +2,7 @@
     "description": "MatCL: A new easy-to use OpenCL toolbox for MathWorks Matlab}", 
     "license": "other-open", 
     "title": "MuMPlaCL/MatCL", 
-    "version": "v1.0.1", 
+    "version": "v1.1.1", 
     "upload_type": "software", 
     "publication_date": "2019-01-03", 
     "creators": [
