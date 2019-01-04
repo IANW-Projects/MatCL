@@ -12,30 +12,37 @@ MatCL is also optimized to allow efficient execution of OpenCL kernels within Ma
 
 A practical example for how MatCL can be used for scientific research is the [Induction Equation](https://github.com/MuMPlaCL/InductionEq) project.
 
-Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeon, Core, HD Graphics) devices with Matlab R2016b and up.
+Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeon, Core, HD Graphics) devices with Matlab R2015b and up.
 
 ## Usage
 
-- Enumerate OpenCL Devices:
+ Usage information for the individual functions is available through the Matlab `help` command (e.g. `help cl_get_devices`) and the documentation browser (e.g. `doc cl_get_devices`).
+
+- Enumerate OpenCL Devices (returns a list whose i-th entry corresponds to the i-th OpenCL device):
   `[names,dev_class,max_mem,max_wg_size,max_local_work_size,compute_units]=cl_get_devices;`
   - `names`: Names of all available devices
   - `dev_class`: The device class (CPU, GPU or Other for other or unknown Accelerators)
   - `max_mem`: The available device memory in bytes
   - `max_wg_size`: Max. size of OpenCL work group
   - `max_local_work_size`: Max. size of work items
-  - `compute_units`: Number of compute units (i.e. CPU cores) of the device
+  - `compute_units`: Number of compute units (e.g. CPU cores) of the device
 
 - Build Kernel:
   `[comp_time,kernels]=cl_run_kernel(ocl_dev_id,'kernel_url.cl','defines');`
+  - `comp_time`: Microseconds it took to compile the kernels
+  - `kernels`: List with names of all available kernels
+  
   - `ocl_dev_id`: ID of the OpenCL device to be used
   - `kernel_url.cl`: URL of the kernel file
   - `defines`: List of OpenCL compiler defines
-  - `kernels`: List with names of all available kernels
-
+  
 - Run Kernel:
   `[run_time,copy_time]=cl_run_kernel(ocl_dev_id,',{'kernel_function1','kernel_function2'},global_range,local_range,in1,out1,[rw_flags]);`
+  - `run_time`: Microseconds it took to execute the kernels
+  - `copy_time`: Microseconds it took to copy all buffers
+  
   - `ocl_dev_id`: ID of the OpenCL device to be used
-  - `kernel_function`: Cell array of kernel functions to execute (can also be a signal string)
+  - `kernel_function`: Cell array of kernel functions to execute (can also be a single string for just one kernel)
   - `global_range`: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size.
   - `local_range`: 3D local OpenCL range (see NDRange)
   - `in1, out1`: List of variables to pass from/to kernel
@@ -43,10 +50,12 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
 - Build & Run Kernel:
   `[run_time]=cl_run_kernel(ocl_dev_id,'kernel_url.cl ','defines ','kernel_function',global_range,local_range,in1,out1,[rw_flags]);`
+  - `run_time`: Microseconds it took to execute the kernels
+  
   - `ocl_dev_id`: ID of the OpenCL device to be used
   - `kernel_url.cl`: URL of the kernel file
   - `defines`: List of OpenCL compiler defines
-  - `kernel_function`: Cell array of kernel functions to execute (can also be a signal string)
+  - `kernel_function`: Cell array of kernel functions to execute (can also be a single string for just one kernel)
   - `global_range`: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size.
   - `local_range`: Local OpenCL range (see NDRange)
   - `in1, out1`: List of variables to pass from/to kernel
@@ -54,10 +63,12 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
 - Build & Run Kernel (with Kernel printf redirection):
   `[run_time]=cl_dbg_kernel(ocl_dev_id,' kernel_url.cl ','defines ','kernel_function',global_range,local_range,in1,out1,[rw_flags]);`
+  - `run_time`: Microseconds it took to execute the kernels (might be slower due to printf redirection)
+  
   - `ocl_dev_id`: ID of the OpenCL device to be used
   - `kernel_url.cl`: URL of the kernel file
   - `defines`: List of OpenCL compiler defines
-  - `kernel_function`: Cell array of kernel functions to execute (can also be a signal string)
+  - `kernel_function`: Cell array of kernel functions to execute (can also be a single string for just one kernel)
   - `global_range`: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size.
   - `local_range`: Local OpenCL range (see NDRange)
   - `in1, out1`: List of variables to pass from/to kernel
@@ -66,13 +77,14 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
 ## Setup
 
-Just use `git clone git@github.com:philipheinisch/MatCL.git` and run compile_lx.m or compile_win.m to compile MatCL. Depending on the OpenCL libraries used, the library path may have to be changed.
-Than add the folder `MatCL` to the search path of Matlab.
+Just use `git clone https://github.com/MuMPlaCL/MatCL.git` and run `compile_lx.m` or `compile_win.m` to compile MatCL. Depending on the OpenCL libraries used, the library path may have to be changed.
+Than add the folder `MatCL` to the search path of Matlab. 
+**Alternatively, precompiled binaries are available at https://github.com/MuMPlaCL/MatCL/releases.**
 
 There may be problems with old C/C++ libraries supplied by Matlab under Linux, resulting in errors such as
 `Invalid MEX-file '/..../cl_get_devices.mex64'`, followed by many missing symbols. If you use
-some Debian based system, install the package `matlab-support` via `sudo apt-get install matlab-support`
-and choose the option to rename the GGC libraries of Matlab during setup.
+a Debian based system, install the package `matlab-support` via `sudo apt-get install matlab-support`
+and choose the option to rename the GCC libraries of Matlab during setup.
 
 
 ## Reference
@@ -93,8 +105,17 @@ and the following bibtex entry.
   doi={10.1145/3204919.3204927}
 }
 ```
-
-
+The latest release can be cited with
+```
+@misc{MatCLGit,
+  title={{MatCL}: {A} new easy-to use {OpenCL} toolbox for {MathWorks} {Matlab}},
+  author={Heinisch, Philip and Ostaszewski, Katharina and Ranocha, Hendrik},
+  month={01},
+  year={2019},
+  howpublished={\url{https://github.com/MuMPlaCL/MatCL}},
+  doi={10.5281/zenodo.1434408}
+}
+```
  ## License
 
 This project is licensed under the terms of the Creative Commons [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode) license.
