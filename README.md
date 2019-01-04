@@ -1,7 +1,9 @@
 # MatCL
 
 
-[![License](https://licensebuttons.net/l/by-nc-nd/3.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode) [![DOI](https://zenodo.org/badge/DOI/10.1145/3204919.3204927.svg)](https://doi.org/10.1145/3204919.3204927)
+[![License](https://licensebuttons.net/l/by-nc-nd/3.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode) 
+[![DOI](https://zenodo.org/badge/DOI/10.1145/3204919.3204927.svg)](https://doi.org/10.1145/3204919.3204927)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2531474.svg)](https://doi.org/10.5281/zenodo.2531474)
 
 
 MatCL is an OpenCL interface for MathWorks Matlab. This MEX-based toolbox aims at providing a simple and easy to use solution to transfer memory and launch OpenCL kernels from Matlab using a single command.
@@ -113,7 +115,7 @@ The latest release can be cited with
   month={01},
   year={2019},
   howpublished={\url{https://github.com/MuMPlaCL/MatCL}},
-  doi={10.5281/zenodo.1434408}
+  doi={10.5281/zenodo.2531474}
 }
 ```
  ## License
