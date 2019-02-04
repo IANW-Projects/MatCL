@@ -12,7 +12,7 @@ MatCL is primarily intended to help in the development and testing of OpenCL ker
 Because MatCL handles the entire low-level process, this toolbox makes it possible to execute kernels without in depth knowledge of the host implementation necessary to support the execution of OpenCL kernels.
 MatCL is also optimized to allow efficient execution of OpenCL kernels within Matlab to accelerate computationally intensive tasks without having to rely on Nvidia CUDA. In addition to single command kernel execution, MatCL also allows for an independent two-step kernel compilation and launch workflow to save the kernel compile time and allow efficient repetitive kernel execution.
 
-A practical example for how MatCL can be used for scientific research is the [Induction Equation](https://github.com/MuMPlaCL/InductionEq) project.
+A practical example for how MatCL can be used for scientific research is the [Induction Equation](https://github.com/IANW-Projects/InductionEq) project.
 
 Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeon, Core, HD Graphics) devices with Matlab R2015b and up.
 
@@ -79,9 +79,9 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
 ## Setup
 
-Just use `git clone https://github.com/MuMPlaCL/MatCL.git` and run `compile_lx.m` or `compile_win.m` to compile MatCL. Depending on the OpenCL libraries used, the library path may have to be changed.
+Just use `git clone https://github.com/IANW-Projects/MatCL` and run `compile_lx.m` or `compile_win.m` to compile MatCL. Depending on the OpenCL libraries used, the library path may have to be changed.
 Than add the folder `MatCL` to the search path of Matlab. 
-**Alternatively, precompiled binaries are available at https://github.com/MuMPlaCL/MatCL/releases.**
+**Alternatively, precompiled binaries are available at https://github.com/IANW-Projects/MatCL/releases.**
 
 There may be problems with old C/C++ libraries supplied by Matlab under Linux, resulting in errors such as
 `Invalid MEX-file '/..../cl_get_devices.mex64'`, followed by many missing symbols. If you use
@@ -103,7 +103,7 @@ and the following bibtex entry.
   series={IWOCL '18, May 2018, Oxford (United Kingdom)},
   publisher={ACM},
   address={New York, NY, USA},
-  note={\url{https://github.com/MuMPlaCL/MatCL}},
+  note={\url{https://github.com/IANW-Projects/MatCL}},
   doi={10.1145/3204919.3204927}
 }
 ```
@@ -114,7 +114,7 @@ The latest release can be cited with
   author={Heinisch, Philip and Ostaszewski, Katharina and Ranocha, Hendrik},
   month={01},
   year={2019},
-  howpublished={\url{https://github.com/MuMPlaCL/MatCL}},
+  howpublished={\url{https://github.com/IANW-Projects/MatCL}},
   doi={10.5281/zenodo.2531474}
 }
 ```
