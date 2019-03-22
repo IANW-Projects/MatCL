@@ -1,7 +1,7 @@
 # MatCL
 
 
-[![License](https://licensebuttons.net/l/by-nc-nd/3.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode) 
+[![License](https://licensebuttons.net/l/by-nc-nd/3.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode)
 [![DOI](https://zenodo.org/badge/DOI/10.1145/3204919.3204927.svg)](https://doi.org/10.1145/3204919.3204927)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2531474.svg)](https://doi.org/10.5281/zenodo.2531474)
 
@@ -33,16 +33,16 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
   `[comp_time,kernels]=cl_run_kernel(ocl_dev_id,'kernel_url.cl','defines');`
   - `comp_time`: Microseconds it took to compile the kernels
   - `kernels`: List with names of all available kernels
-  
+
   - `ocl_dev_id`: ID of the OpenCL device to be used
   - `kernel_url.cl`: URL of the kernel file
   - `defines`: List of OpenCL compiler defines
-  
+
 - Run Kernel:
   `[run_time,copy_time]=cl_run_kernel(ocl_dev_id,',{'kernel_function1','kernel_function2'},global_range,local_range,in1,out1,[rw_flags]);`
   - `run_time`: Microseconds it took to execute the kernels
   - `copy_time`: Microseconds it took to copy all buffers
-  
+
   - `ocl_dev_id`: ID of the OpenCL device to be used
   - `kernel_function`: Cell array of kernel functions to execute (can also be a single string for just one kernel)
   - `global_range`: 3D global OpenCL range (see NDRange). If this vector has six entires, the first three define the 3D work offset followed by the 3D work size.
@@ -53,7 +53,7 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 - Build & Run Kernel:
   `[run_time]=cl_run_kernel(ocl_dev_id,'kernel_url.cl ','defines ','kernel_function',global_range,local_range,in1,out1,[rw_flags]);`
   - `run_time`: Microseconds it took to execute the kernels
-  
+
   - `ocl_dev_id`: ID of the OpenCL device to be used
   - `kernel_url.cl`: URL of the kernel file
   - `defines`: List of OpenCL compiler defines
@@ -66,7 +66,7 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 - Build & Run Kernel (with Kernel printf redirection):
   `[run_time]=cl_dbg_kernel(ocl_dev_id,' kernel_url.cl ','defines ','kernel_function',global_range,local_range,in1,out1,[rw_flags]);`
   - `run_time`: Microseconds it took to execute the kernels (might be slower due to printf redirection)
-  
+
   - `ocl_dev_id`: ID of the OpenCL device to be used
   - `kernel_url.cl`: URL of the kernel file
   - `defines`: List of OpenCL compiler defines
@@ -79,9 +79,9 @@ Tested using Nvidia (Tesla, GTX), AMD (Ryzen, Radeon R9, FirePro) and Intel (Xeo
 
 ## Setup
 
-Just use `git clone https://github.com/IANW-Projects/MatCL` and run `compile_lx.m` or `compile_win.m` to compile MatCL. Depending on the OpenCL libraries used, the library path may have to be changed.
-Than add the folder `MatCL` to the search path of Matlab. 
-**Alternatively, precompiled binaries are available at https://github.com/IANW-Projects/MatCL/releases.**
+Just use `git clone https://github.com/IANW-Projects/MatCL` and run `compile_linux.m`, `compile_windows.m`, or `compile_mac` to compile MatCL. Depending on the OpenCL libraries used, the library path may have to be changed in these files.
+Than add the folder `MatCL` to the search path of Matlab.
+**Alternatively, some precompiled binaries are available at https://github.com/IANW-Projects/MatCL/releases.**
 
 There may be problems with old C/C++ libraries supplied by Matlab under Linux, resulting in errors such as
 `Invalid MEX-file '/..../cl_get_devices.mex64'`, followed by many missing symbols. If you use
