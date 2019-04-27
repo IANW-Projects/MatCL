@@ -10,6 +10,7 @@
 #include <fstream>
 #include <string>
 #include <time.h>
+#include <sstream>
 #if defined(_WIN32)
 #include <windows.h>
 #include <io.h>
